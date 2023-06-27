@@ -1,26 +1,33 @@
-﻿namespace Modulo_Producto.Models
+﻿using System.ComponentModel.DataAnnotations;
+namespace Modulo_Producto.Models
 {
     public class Producto
     {
         public int Id { get; set; }
 
-        public string CodigoBarra { get; set; }
+        [Display(Name = "Codigo de Barra")]
+        public string? CodigoBarra { get; set; }
 
-        public string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
 
-        public float PrecioCosto { get; set; }
+        [Display(Name = "Precio de Costo")]
+        public float? PrecioCosto { get; set; }
 
-        public float PrecioMayoreo { get; set; }
+        [Display(Name = "Precio de Mayoreo")]
+        public float? PrecioMayoreo { get; set; }
 
-        public float PrecioVenta { get; set; }
+        [Display(Name = "Precio de Venta")]
+        public float? PrecioVenta { get; set; }
 
-        public float Impuestos { get; set; }
+        public float? Impuestos { get; set; }
 
+        [Display(Name = "Tiene Inventario")]
         public bool TieneInventario { get; set; }
 
-        public int CantidadActual { get; set; }
+        [Display(Name = "Cantidad actual")]
+        public int? CantidadActual { get; set; }
 
-        public int Minimo { get; set; }
+        public int? Minimo { get; set; }
 
     }
 }

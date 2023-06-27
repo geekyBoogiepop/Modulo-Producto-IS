@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Modulo_Producto.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<SQLiteContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteContext") ?? throw new InvalidOperationException("Connection string 'SQLiteContext' not found.")));
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 
