@@ -1,17 +1,17 @@
 ﻿@model IEnumerable<Modulo_Producto.Models.Producto>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Productos";
 }
 
-<h1>Index</h1>
+<h1 class="text-center"><span class="highlight">Productos</span></h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Create">Nuevo</a>
 </p>
-<table class="table">
+<table class="table table-striped table-hover">
     <thead>
-        <tr>
+        <tr class="table-dark align-top text-center">
             <th>
                 @Html.DisplayNameFor(model => model.CodigoBarra)
             </th>
@@ -43,41 +43,42 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoBarra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrecioCosto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrecioMayoreo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrecioVenta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Impuestos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TieneInventario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CantidadActual)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Minimo)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoBarra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioCosto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioMayoreo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioVenta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Impuestos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TieneInventario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CantidadActual)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Minimo)
+                </td>
+                <td>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-dark btn-sm" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+                    <a class="btn btn-danger btn-sm mt-2" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

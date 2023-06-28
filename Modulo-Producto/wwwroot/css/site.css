@@ -15,4 +15,17 @@ html {
 
 body {
   margin-bottom: 60px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.logo {
+  width: 35px;
+}
+
+.nav-item a:hover {
+  box-shadow: 0 3px 0 lightskyblue;
+}
+
+.highlight {
+  box-shadow: 0 3px 0 purple;
 }
