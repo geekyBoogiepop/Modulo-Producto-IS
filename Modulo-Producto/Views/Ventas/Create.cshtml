@@ -1,0 +1,47 @@
+﻿@model Modulo_Producto.Models.Venta
+
+@{
+    ViewData["Title"] = "Create";
+    var productList = ViewBag.ProductList as SelectList;
+}
+
+<h1>Create</h1>
+
+<h4>Venta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Create", "Ventas", FormMethod.Post))
+        {
+            <div>
+                <label for="Cliente">Cliente:</label>
+                <input type="text" name="Cliente" id="Cliente" class="form-control" />
+            </div>
+
+            <div>
+                <label for="Cantidad">Cantidad:</label>
+                <input type="number" name="Cantidad" id="Cantidad" class="form-control" />
+            </div>
+
+            <div>
+                <label for="Caja">Caja:</label>
+                <input type="text" name="Caja" id="Caja" class="form-control" />
+            </div>
+
+            <div>
+                <label for="IdProducto">Producto:</label>
+                @Html.DropDownList("IdProducto", productList, "-- Selecciona --", new { @class = "form-control" })
+            </div>
+
+            <input type="submit" value="Guardar" class="btn btn-primary" />
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

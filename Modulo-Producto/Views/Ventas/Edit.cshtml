@@ -1,0 +1,49 @@
+﻿@model Modulo_Producto.Models.Venta
+
+@{
+    ViewData["Title"] = "Edit";
+    var productList = ViewBag.ProductList as SelectList;
+}
+
+<h1>Edit</h1>
+
+<h4>Venta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Edit", "Ventas", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div>
+                <label for="Cliente">Cliente:</label>
+                @Html.EditorFor(model => model.Cliente, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div>
+                <label for="Cantidad">Cantidad:</label>
+                @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div>
+                <label for="Caja">Caja:</label>
+                @Html.EditorFor(model => model.Caja, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div>
+                <label for="IdProducto">Producto:</label>
+                @Html.DropDownList("IdProducto", productList, "-- Selecciona --", new { @class = "form-control" })
+            </div>
+
+            <input type="submit" value="Guardar" class="btn btn-primary" />
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Modulo_Producto.Data;
 
@@ -10,9 +11,10 @@ using Modulo_Producto.Data;
 namespace Modulo_Producto.Migrations
 {
     [DbContext(typeof(SQLiteContext))]
-    partial class SQLiteContextModelSnapshot : ModelSnapshot
+    [Migration("20230628151145_venta")]
+    partial class venta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.19");
@@ -80,12 +82,28 @@ namespace Modulo_Producto.Migrations
                     b.Property<int>("IdProducto")
                         .HasColumnType("INTEGER");
 
-                    b.Property<float?>("Total")
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("Total")
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductoId");
+
                     b.ToTable("Venta");
+                });
+
+            modelBuilder.Entity("Modulo_Producto.Models.Venta", b =>
+                {
+                    b.HasOne("Modulo_Producto.Models.Producto", "Producto")
+                        .WithMany()
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producto");
                 });
 #pragma warning restore 612, 618
         }

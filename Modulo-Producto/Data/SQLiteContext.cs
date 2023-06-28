@@ -15,5 +15,7 @@ namespace Modulo_Producto.Data
         }
 
         public DbSet<Modulo_Producto.Models.Producto> Producto { get; set; } = default!;
+
+        public DbSet<Modulo_Producto.Models.Venta>? Venta { get; set; }
     }
 }
