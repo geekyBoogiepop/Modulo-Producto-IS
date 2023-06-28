@@ -1,49 +1,45 @@
 ﻿@model Modulo_Producto.Models.Venta
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Venta";
     var productList = ViewBag.ProductList as SelectList;
 }
 
-<h1>Edit</h1>
-
-<h4>Venta</h4>
-<hr />
+<h1 class="text-center"><span class="highlight">Editar Venta</span></h1>
 <div class="row">
     <div class="col-md-4">
         @using (Html.BeginForm("Edit", "Ventas", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
 
-            <div>
+            <div class="mb-2">
                 <label for="Cliente">Cliente:</label>
                 @Html.EditorFor(model => model.Cliente, new { htmlAttributes = new { @class = "form-control" } })
             </div>
 
-            <div>
+            <div class="mb-2">
                 <label for="Cantidad">Cantidad:</label>
                 @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control" } })
             </div>
 
-            <div>
+            <div class="mb-2">
                 <label for="Caja">Caja:</label>
                 @Html.EditorFor(model => model.Caja, new { htmlAttributes = new { @class = "form-control" } })
             </div>
 
-            <div>
+            <div class="mb-2">
                 <label for="IdProducto">Producto:</label>
                 @Html.DropDownList("IdProducto", productList, "-- Selecciona --", new { @class = "form-control" })
             </div>
 
             <input type="submit" value="Guardar" class="btn btn-primary" />
+            <a class="btn btn-warning" asp-action="Index">Regresar</a>
         }
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
