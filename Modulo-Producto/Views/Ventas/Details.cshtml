@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Detalles de la Venta";
+    var productList = ViewBag.ProductList;
 }
 
 <h1 class="text-center"><span class="highlight">Detalles de la Venta</span></h1>
@@ -36,7 +37,13 @@
             @Html.DisplayNameFor(model => model.IdProducto)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IdProducto)
+            @foreach (var product in productList)
+            {
+                if (product.Id == Model.IdProducto)
+                {
+                    <span>@product.Descripcion</span>
+                }
+            }
         </dd>
     </dl>
 </div>

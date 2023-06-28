@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Ventas";
+    var productList = ViewBag.ProductList;
 }
 
 <h1 class="text-center"><span class="highlight">Ventas</span></h1>
@@ -47,7 +48,13 @@
                     @Html.DisplayFor(modelItem => item.Total)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IdProducto)
+                    @foreach (var product in productList)
+                    {
+                        if (product.Id == item.IdProducto)
+                        {
+                            <span>@product.Descripcion</span>
+                        }
+                    }
                 </td>
                 <td>
                     <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id">Editar</a>

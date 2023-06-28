@@ -22,14 +22,19 @@ namespace Modulo_Producto
         // GET: Ventas
         public async Task<IActionResult> Index()
         {
-              return _context.Venta != null ? 
-                          View(await _context.Venta.ToListAsync()) :
-                          Problem("Entity set 'SQLiteContext.Venta'  is null.");
+            List<Producto> productList = _context.Producto.ToList();
+            ViewBag.ProductList = productList;
+            return _context.Venta != null ?
+                        View(await _context.Venta.ToListAsync()) :
+                        Problem("Entity set 'SQLiteContext.Venta'  is null.");
         }
 
         // GET: Ventas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            List<Producto> productList = _context.Producto.ToList();
+            ViewBag.ProductList = productList;
+
             if (id == null || _context.Venta == null)
             {
                 return NotFound();
@@ -49,7 +54,7 @@ namespace Modulo_Producto
         public IActionResult Create()
         {
             List<Producto> productList = _context.Producto.ToList();
-            ViewBag.ProductList = new SelectList(productList, "Id", "CodigoBarra");
+            ViewBag.ProductList = new SelectList(productList, "Id", "Descripcion");
             return View();
         }
 
@@ -63,7 +68,7 @@ namespace Modulo_Producto
             if (ModelState.IsValid)
             {
                 var product = await _context.Producto.FindAsync(venta.IdProducto);
-                venta.Total = product.PrecioCosto * venta.Cantidad;
+                venta.Total = product?.PrecioVenta * venta.Cantidad;
                 _context.Add(venta);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -75,7 +80,7 @@ namespace Modulo_Producto
         public async Task<IActionResult> Edit(int? id)
         {
             List<Producto> productList = _context.Producto.ToList();
-            ViewBag.ProductList = new SelectList(productList, "Id", "CodigoBarra");
+            ViewBag.ProductList = new SelectList(productList, "Id", "Descripcion");
 
             if (id == null || _context.Venta == null)
             {
@@ -107,7 +112,7 @@ namespace Modulo_Producto
                 try
                 {
                     var product = await _context.Producto.FindAsync(venta.IdProducto);
-                    venta.Total = product.PrecioCosto * venta.Cantidad;
+                    venta.Total = product?.PrecioCosto * venta.Cantidad;
                     _context.Update(venta);
                     await _context.SaveChangesAsync();
                 }
@@ -130,6 +135,8 @@ namespace Modulo_Producto
         // GET: Ventas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            List<Producto> productList = _context.Producto.ToList();
+            ViewBag.ProductList = productList;
             if (id == null || _context.Venta == null)
             {
                 return NotFound();
@@ -159,14 +166,14 @@ namespace Modulo_Producto
             {
                 _context.Venta.Remove(venta);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool VentaExists(int id)
         {
-          return (_context.Venta?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Venta?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

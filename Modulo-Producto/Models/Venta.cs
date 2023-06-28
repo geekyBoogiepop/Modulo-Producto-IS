@@ -9,20 +9,20 @@ namespace Modulo_Producto.Models
 
         [Required]
         [Display(Name = "Nombre cliente")]
-        public string Cliente { get; set; }
+        public string? Cliente { get; set; }
 
         [Display(Name = "Cantidad")]
-        public int Cantidad { get; set; }
+        public int? Cantidad { get; set; }
 
         [Display(Name = "Numero Caja")]
-        public int Caja { get; set; }
+        public int? Caja { get; set; }
 
-        [Display(Name = "Total")]
+        [Display(Name = "Total (C$)")]
         public float? Total { get; set; }
 
         [Required]
         [Display(Name = "Producto")]
-        public int IdProducto { get; set; }
+        public int? IdProducto { get; set; }
     }
 }
 
