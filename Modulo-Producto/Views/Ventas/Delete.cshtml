@@ -17,22 +17,10 @@
             @Html.DisplayFor(model => model.Cliente)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cantidad)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cantidad)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Caja)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Caja)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Total)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.IdProducto)
@@ -45,6 +33,20 @@
                     <span>@product.Descripcion</span>
                 }
             }
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Total)
         </dd>
     </dl>
 
